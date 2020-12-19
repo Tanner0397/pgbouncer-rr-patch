@@ -1,8 +1,11 @@
+# Fork Notes
+This is a fork of the project that allows for the use of Python 3.7 f
+
 # Query Routing and Rewrite: Introducing pgbouncer-rr for Amazon Redshift and PostgreSQL
 
 Have you ever wanted to split your database load across multiple servers or clusters without impacting the configuration or code of your client applications? Or perhaps you have wished for a way to intercept and modify application queries, so that you can make them use optimized tables (sorted, pre-joined, pre-aggregated, etc.), add security filters, or hide changes you have made in the schema?  
 
-The [pgbouncer-rr](https://github.com/awslabs/pgbouncer-rr-patch) project is based on [pgbouncer](https://pgbouncer.github.io/usage.html#description), an open source PostgreSQL connection pooler. It adds two new significant features:    
+The [pgbouncer-rr](https://github.com/Tanner0397/pgbouncer-rr-patch) project is based on [pgbouncer](https://pgbouncer.github.io/usage.html#description), an open source PostgreSQL connection pooler. It adds two new significant features:    
 1. **Routing:** intelligently send queries to different database servers from one client connection; use it to partition or load balance across multiple servers/clusters.  
 2. **Rewrite:** intercept and programmatically change client queries before they are sent to the server: use it to optimize or otherwise alter queries without modifying your application.   
 
@@ -187,13 +190,13 @@ SELECT prodname, SUM(total) FROM product_sales GROUP BY prodname ORDER BY prodna
 Download and install pgbouncer-rr by running the following commands (Amazon Linux/RHEL/CentOS):
 ```
 # install required packages - see https://github.com/pgbouncer/pgbouncer#building
-sudo yum install libevent-devel openssl-devel python-devel libtool git patch make -y
+sudo yum install libevent-devel openssl-devel python3-3.7.9 python3-devel-3.7.9 libtool git patch make -y
 
 # download the latest tested pgbouncer distribution - 1.12
 git clone https://github.com/pgbouncer/pgbouncer.git --branch "pgbouncer_1_12_0"
 
 # download pgbouncer-rr extensions
-git clone https://github.com/awslabs/pgbouncer-rr-patch.git
+git clone https://github.com/Tanner0397/pgbouncer-rr-patch.git
 
 # merge pgbouncer-rr extensions into pgbouncer code
 cd pgbouncer-rr-patch

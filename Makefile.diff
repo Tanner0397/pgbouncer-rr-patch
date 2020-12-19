@@ -1,9 +1,8 @@
---- ../pgbouncer/Makefile	2020-04-26 15:20:51.655323355 -0400
-+++ ./Makefile	2020-04-26 14:54:45.004586868 -0400
-@@ -18,12 +18,15 @@ pgbouncer_SOURCES = \
- 	src/proto.c \
- 	src/sbuf.c \
- 	src/scram.c \
+diff --git a/Makefile b/Makefile
+index 038a834..b057e27 100644
+--- a/Makefile
++++ b/Makefile
+@@ -21,6 +21,9 @@ pgbouncer_SOURCES = \
  	src/server.c \
  	src/stats.c \
  	src/system.c \
@@ -13,13 +12,7 @@
  	src/takeover.c \
  	src/util.c \
  	src/varcache.c \
- 	src/common/base64.c \
- 	src/common/saslprep.c \
- 	src/common/scram-common.c \
-@@ -44,36 +47,41 @@ pgbouncer_SOURCES = \
- 	include/proto.h \
- 	include/sbuf.h \
- 	include/scram.h \
+@@ -47,6 +50,9 @@ pgbouncer_SOURCES = \
  	include/server.h \
  	include/stats.h \
  	include/system.h \
@@ -29,16 +22,12 @@
  	include/takeover.h \
  	include/util.h \
  	include/varcache.h \
- 	include/common/base64.h \
- 	include/common/pg_wchar.h \
- 	include/common/postgres_compat.h \
- 	include/common/saslprep.h \
- 	include/common/scram-common.h \
+@@ -58,19 +64,21 @@ pgbouncer_SOURCES = \
  	include/common/unicode_norm.h \
  	include/common/unicode_norm_table.h
  
 -pgbouncer_CPPFLAGS = -Iinclude $(CARES_CFLAGS) $(LIBEVENT_CFLAGS) $(TLS_CPPFLAGS)
-+python_CPPFLAGS = -I/usr/include/python2.7 -I/usr/include/python2.7
++python_CPPFLAGS = -I/usr/include/python3.7m -I/usr/include/python3.7m
 +pgbouncer_CPPFLAGS = -Iinclude $(CARES_CFLAGS) $(LIBEVENT_CFLAGS) $(TLS_CPPFLAGS) $(python_CPPFLAGS)
  
  # include libusual sources directly
@@ -58,17 +47,11 @@
  
  # files in tgz
  EXTRA_DIST = AUTHORS COPYRIGHT Makefile config.mak.in config.sub config.guess \
- 	     install-sh autogen.sh configure configure.ac \
- 	     etc/mkauth.py etc/optscan.sh etc/example.debian.init.sh \
- 	     win32/Makefile \
-@@ -88,14 +96,16 @@ LIBUSUAL_DIST = $(filter-out %/config.h,
- 		lib/mk/*.mk \
- 		lib/mk/antimake.mk lib/mk/antimake.txt \
- 		lib/mk/install-sh lib/mk/std-autogen.sh \
+@@ -94,8 +102,10 @@ LIBUSUAL_DIST = $(filter-out %/config.h, $(sort $(wildcard \
  		lib/README lib/COPYRIGHT \
  		lib/find_modules.sh )))
  
-+python_LDFLAGS = -lpthread -ldl -lutil -lm -lpython2.7 -Xlinker -export-dynamic
++python_LDFLAGS = -lpthread -ldl -lutil -lm -lpython3.7m -Xlinker -export-dynamic
  pgbouncer_LDFLAGS := $(TLS_LDFLAGS)
 -pgbouncer_LDADD := $(CARES_LIBS) $(LIBEVENT_LIBS) $(TLS_LIBS) $(LIBS)
 +pgbouncer_LDADD := $(CARES_LIBS) $(LIBEVENT_LIBS) $(TLS_LIBS) $(LIBS) $(python_LDFLAGS)
@@ -76,6 +59,3 @@
  LIBS :=
  
  #
- # win32
- #
- 
