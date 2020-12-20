@@ -1,5 +1,5 @@
 # Fork Notes
-This is a fork of the project that allows for the use of Python 3.7 f
+This is a fork of the project that allows for the use of Python 3.7
 
 # Query Routing and Rewrite: Introducing pgbouncer-rr for Amazon Redshift and PostgreSQL
 
