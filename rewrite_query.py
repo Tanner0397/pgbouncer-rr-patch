@@ -19,7 +19,7 @@
 # REWRITE FN - CALLED FROM PGBOUNCER - DO NOT CHANGE NAME
 # RETURNS MODIFIED QUERY STRING
 import re
-def rewrite_query(username, query):
+def rewrite_query(username, database, query):
     # Query 1
     q1="SELECT storename, SUM\(total\) FROM sales JOIN store USING \(storeid\) GROUP BY storename ORDER BY storename"
     q2="SELECT prodname, SUM\(total\) FROM sales JOIN product USING \(productid\) GROUP BY prodname ORDER BY prodname"
@@ -34,5 +34,5 @@ def rewrite_query(username, query):
 
 if __name__ == "__main__":
     # some tests
-    print rewrite_query("master", "SELECT storename, SUM(total) FROM sales JOIN store USING (storeid) GROUP BY storename ORDER BY storename;")
-    print rewrite_query("master", "SELECT prodname, SUM(total) FROM sales JOIN product USING (productid) GROUP BY prodname ORDER BY prodname;")
+    print(rewrite_query("master", "db", "SELECT storename, SUM(total) FROM sales JOIN store USING (storeid) GROUP BY storename ORDER BY storename;"))
+    print(rewrite_query("master", "db", "SELECT prodname, SUM(total) FROM sales JOIN product USING (productid) GROUP BY prodname ORDER BY prodname;"))
